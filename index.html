@@ -69,7 +69,7 @@ button:disabled{
 <div id="resultado"></div>
 <div id="prob"></div>
 
-<h2>📜 Lista de poderes</h2>
+<h2>📜 Lista de títulos</h2>
 <div id="lista"></div>
 
 <audio id="low" src="https://www.myinstants.com/media/sounds/click.mp3" preload="auto"></audio>
@@ -84,8 +84,8 @@ let rolls = 0;
 let puedeGirar = true;
 let btn = document.getElementById("btn");
 
-// 🎲 PODERES
-const poderes = [
+// 🎲 TÍTULOS
+const titulos = [
 {nombre:"💀 Pobre",prob:4000,rare:1},
 {nombre:"💧 Pobre de agua",prob:3500,rare:1},
 {nombre:"🔥 Pobre de fuego",prob:3000,rare:1},
@@ -175,7 +175,7 @@ const poderes = [
 {nombre:"⚗️ Supremacía orbital",prob:0.43,rare:10},
 {nombre:"🦖 Supremacía prehistórica",prob:0.42,rare:10},
 {nombre:"🐻‍❄️ Supremacía Polar",prob:0.40,rare:10},
-{nombre:"🐥 Supremacía Chiken",prob:0.39,rare:10}
+{nombre:"🐤 Supremacía Chiken",prob:0.38,rare:10}
 ];
 
 // 🎲 ROLL
@@ -193,7 +193,7 @@ function roll(){
     let spins=10;
 
     let interval=setInterval(()=>{
-        res.innerText=poderes[Math.floor(Math.random()*poderes.length)].nombre;
+        res.innerText=titulos[Math.floor(Math.random()*titulos.length)].nombre;
         spins--;
 
         if(spins<=0){
@@ -209,13 +209,13 @@ function roll(){
 
 // 🎯 FINAL ROLL
 function finalRoll(){
-    let total=poderes.reduce((s,p)=>s+p.prob,0);
+    let total=titulos.reduce((s,p)=>s+p.prob,0);
     let rand=Math.random()*total;
 
     let res=document.getElementById("resultado");
     let probText=document.getElementById("prob");
 
-    for(let p of poderes){
+    for(let p of titulos){
         if(rand < (p.prob * luck)){
             res.innerText=p.nombre;
             probText.innerText="1 en "+Math.floor(total/p.prob);
@@ -241,10 +241,10 @@ function finalRoll(){
 
 // 📜 LISTA
 function generarLista(){
-    let total=poderes.reduce((s,p)=>s+p.prob,0);
+    let total=titulos.reduce((s,p)=>s+p.prob,0);
     let lista=document.getElementById("lista");
 
-    poderes.forEach(p=>{
+    titulos.forEach(p=>{
         let div=document.createElement("div");
         div.style.padding="4px";
 
